@@ -1,0 +1,33 @@
+<?php require('template/header.phtml');
+
+if (isset($_SESSION["login"])) { //Don't show register page if user is registered
+    echo '<h3 class="text-center">You\'re already registered!</h3>';
+}
+else {
+    echo '
+    <div class="form">
+        <div class="form-content">
+            <div class="row">
+                <form method="post" action="register.php">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email" name="Email"
+                            maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email must be in the following format: characters@characters.domain" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" name="Password"
+                            pattern=".{10,}" title="Ten or more characters required" required/>
+                        </div>
+                    </div>
+
+                    <button type="submit" name="Register">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>';
+}
+require('template/footer.phtml');
