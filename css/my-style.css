@@ -36,3 +36,10 @@
     background-color: #000;
     color: #fff;
 }
+
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
