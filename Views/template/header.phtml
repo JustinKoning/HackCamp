@@ -29,7 +29,9 @@
         <div id="menu" class="col-xs-6 col-sm-3 col-md-2">
         <ul class="nav navbar_default nav-stacked">
             <img class="nav-justified" src="images/fanatics-logo.png" alt="Fanatics Logo" />
-            <h1 class="text-center"><?php echo $view->pageTitle ?></h1>
+            <?php if (isset($_SESSION['login'])){
+                echo '<h4 class="text-center">Hello '. $_SESSION['login'] . '</h4>';
+            }?>
         </ul>
             <?php
 
