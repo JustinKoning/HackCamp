@@ -6,14 +6,15 @@
 }
 
 #menu a {
-    background-color: #e53d2e;
+    background-color: #1a0263;
     font-size: large;
-    color: #08203e;
+    color: #ffffff;
     text-decoration: none;
     display: block;
     padding: 3px;
     margin: 5px;
     text-align: center;
+    border-radius: 5px;
 }
 #menu a:hover {
     color: #ffffff;
