@@ -1,5 +1,7 @@
 <?php require('template/header.phtml');
 
+echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view->pageTitle . '</h1>';
+
 if (isset($_SESSION["login"])) { //Don't show register page if user is registered
     echo '
     <div class="container" id="vendorcontainer">
