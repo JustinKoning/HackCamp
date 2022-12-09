@@ -52,3 +52,14 @@
     font-weight: bold;
     line-height: 80px;
 }
+
+#vendorcontainer {
+    margin-top : 3em;
+    margin-left: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#vendorbar{
+    height: 3em;
+}
