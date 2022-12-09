@@ -36,8 +36,11 @@
 
 .form-content {
     padding: 5%;
-    border: 1px solid #ced4da;
     margin-bottom: 2%;
+}
+
+.form-content .form-control {
+    margin-bottom: 3px;
 }
 
 .img{
