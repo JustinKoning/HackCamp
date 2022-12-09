@@ -1,12 +1,21 @@
 <?php require('template/header.phtml') ?>
 
 <h1>Welcome to the Fanatics Vendor Portal </h1>
+    <p>
+        Fanatics has built a world class e-commerce platform that supports all
+        our customer facing sites across the globe. Large clubs with hundreds
+        of products leverage this platform to enable their Fans to purchase
+        merchandise.
+    </p>
+    <p>
+        At Fanatics we want to enable smaller teams and clubs to leverage the
+        capabilities of our technology platform, but without the need for a
+        dedicated website and the costs associated with that.
+    </p>
+    <p>
+        To enable clubs to list their products for sale on such a marketplace we
+        have created this Vendor Portal. This website allows registered users to create and
+        manage products for sale.
+    </p>
 
-<?php if (!isset($_SESSION['login'])){
-    echo '<h3>You are not logged in, please log in or register.</h3>';
-}
-else{
-    echo '<h3>You are logged in</h3>';
-}
-
-require('template/footer.phtml') ?>
+<?php require('template/footer.phtml') ?>
