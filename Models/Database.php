@@ -13,7 +13,7 @@ class Database{
 
     private function __construct(){
         try { //Creates new database connection
-            $this->_dbHandle = new PDO("mysql:host=poseidon.salford.ac.uk;dbname=hc2x_21",  "hc2x-21", "PASSWORD_REDACTED");
+            $this->_dbHandle = new PDO("mysql:host=poseidon.salford.ac.uk;dbname=hc2x_21",  "hc2x-21", "Vwru8eE69ofhtGP");
         }
         catch (PDOException $ex){
             echo $ex->getMessage();
