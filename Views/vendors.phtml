@@ -8,6 +8,7 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
             <div class="col-md-2" id="vendorbar">Amount of Products</div>
             <div class="col-md-2" id="vendorbar"><a class="btn btn-primary btn-sm" href="/create-vendor.php" role="button">Create New</a></div> 
         </div>
+        </div>
         ';
 
     foreach ($view->vendorDataSet as $vendorData) {
@@ -17,6 +18,7 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
             <div class="col-md-2"><b>5</b></div>
             <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php" role="button">View</a></div> 
         </div> 
+        </div>
     ';
     }
 
