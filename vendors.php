@@ -5,7 +5,7 @@ require_once('Models/VendorDataSet.php');
 
 $user = new User();
 $view = new stdClass();
-$view->pageTitle = 'Homepage';
+$view->pageTitle = 'Vendors';
 
 $vendorDataSet = new VendorDataSet();
 $view->vendorDataSet = $vendorDataSet->fetchAssociatedVendors('1');
