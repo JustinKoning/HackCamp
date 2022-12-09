@@ -70,3 +70,7 @@
 #vendorentry{
     margin-top: 3px;
 }
+
+#info{
+    max-width: 70%;
+}
