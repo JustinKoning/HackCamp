@@ -13,9 +13,7 @@ class VendorDataSet
     }
 
     public function fetchAssociatedVendors($login){
-        echo $login;
-        $sqlQuery = 'SELECT vp.permission_ID, 
-        v.name,
+        $sqlQuery = 'SELECT v.name,
         v.vendor_ID,
         v.logo,
         v.shippingAddress,
@@ -25,7 +23,7 @@ class VendorDataSet
         on u.UID = vp.user_ID
         INNER JOIN vendors v
         on v.vendor_ID = vp.vendor_ID
-        WHERE u.email = "'.$login.'";';
+        WHERE u.email = "'.$login.'" AND vp.permission_ID = 1;';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(); // execute the PDO statement

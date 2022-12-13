@@ -17,14 +17,11 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
         <div class="row" id="vendorentry">
             <div class="col-md-2">'.$vendorData->getName().'</div>
             <div class="col-md-2"><b>5</b></div>
-            <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php" role="button">View</a></div> 
+            <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View</a></div> 
         </div> 
-        </div>
     ';
-
-    echo '</div>';
     }
-
+    echo '</div>';
 
 }
 else {
