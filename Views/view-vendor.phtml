@@ -1,13 +1,13 @@
 <?php require('template/header.phtml');
 
-echo '<h1 class="text-center">' . $view->pageTitle . '</h1>';
+echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view->pageTitle . '</h1>';
 
 if (isset($_SESSION["login"])) {
     $permissions = $view->vendor->getUserPermissions($_SESSION["login"]);
 
     echo '
     <div class="row" id="permission-buttons">
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">View Products</a></div>
+        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-products.php" role="button">View Products</a></div>
         <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">Add/Remove Users</a></div>
         <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">Modify Rights</a></div>
         <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">View Logs</a></div>

@@ -55,6 +55,9 @@
     color: #ffffff;
     font-weight: bold;
     line-height: 80px;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
 }
 
 #vendorcontainer {
