@@ -1,0 +1,53 @@
+<?php require('template/header.phtml');
+
+echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view->pageTitle . '</h1>';
+
+if (!isset($_SESSION["login"])) {
+    echo '<h3 class="text-center">Log in to view this page!</h3>';
+}
+else {
+    echo '
+    <div class="form">
+        <div class="form-content">
+            <div class="row">
+                <form method="post" action="/add-product.php" enctype="multipart/form-data">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" name="Name" maxlength="255" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select name="Type" class="form-control">
+                                <option value="NULL">Select type</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Outerwear">Outerwear</option>
+                                <option value="Shirts">Shirts</option>
+                                <option value="Pants">Pants</option>
+                                <option value="Shoes">Shoes</option>
+                                <option value="Skirts">Skirts</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Cost, eg: 25.99" name="Cost" maxlength="255" required/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="Images[]" accept="image/*" multiple required/>
+                        </div>
+                    </div>
+
+                    <button class="form-control" type="submit" name="AddProduct">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>';
+}
+require('template/footer.phtml');
