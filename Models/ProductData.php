@@ -29,7 +29,7 @@ class ProductData
     }
 
     public function getImages(){
-        return $this->_images;
+        return explode(',', $this->_images);
     }
 
     public function getOwner(){

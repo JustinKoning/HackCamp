@@ -11,6 +11,8 @@ if (isset($_SESSION["login"])) {
               <th scope="col">Name</th>
               <th scope="col">Type</th>
               <th scope="col">Cost</th>
+              <th scope="col">Image</th>
+              <th scope="col"></th>
             </tr>
           </thead>';
     foreach ($view->productTable as $productData){ //For every entry in chargerTable, render a table row
@@ -19,7 +21,8 @@ if (isset($_SESSION["login"])) {
             '<td>' . $productData->getName() . '</td>' .
             '<td>' . $productData->getType() . '</td>' .
             '<td> £' . $productData->getCost() . '</td>' .
-            '<td> <img class="img-circle" width="50" src="/images/' . $productData->getImages() . '" alt="Product image"/></td></tr>';
+            '<td> <img class="img-circle" width="50" src="/images/' . $productData->getImages()[0] . '" alt="Product image"/></td>' .
+            '<td><a class="btn btn-default btn-md" href="preview-product.php" role="button">Preview</a></td></tr>';
     }
     echo '</table>';
 }
