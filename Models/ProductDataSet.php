@@ -21,4 +21,12 @@ class ProductDataSet{
         }
         return $dataSet;
     }
+
+    public function fetchAmount(){
+        $sqlQ = 'SELECT COUNT(owner) FROM products WHERE owner = ?';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $_SESSION['UID']);
+        $stmt->execute();
+        return $stmt->fetch()[0];
+    }
 }
