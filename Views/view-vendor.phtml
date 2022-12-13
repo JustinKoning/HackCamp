@@ -1,0 +1,13 @@
+<?php require('template/header.phtml');
+
+echo '<h1 class="text-center">' . $view->pageTitle . '</h1>';
+
+if (isset($_SESSION["login"])) {
+    $permissions = $view->vendor->getUserPermissions($_SESSION["login"]);
+
+    echo '
+    <div class="row">
+    </div>
+    ';
+}
+require('template/footer.phtml');
