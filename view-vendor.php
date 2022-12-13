@@ -6,7 +6,7 @@ require_once('Models/Vendor.php');
 $user = new User();
 $vendor = new Vendor($_GET['id']);
 $view = new stdClass();
-$view->pageTitle = 'View Vendor';
+$view->pageTitle = 'Dashboard';
 $view->vendor = $vendor;
 
 if (isset($_POST["loginButton"])) { //Call logIn function when login button pressed using details user entered
