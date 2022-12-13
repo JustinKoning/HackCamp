@@ -41,20 +41,21 @@
                 <input class="form-control" type="text" name="email" placeholder="Email">
                 <input class="form-control" type="password" name="password" placeholder="Password">
                 <input class="form-control" type="submit" name="loginButton" value="Login">
-            </form>';
+            </form>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="register.php">Register</a></li>';
             }
             else
             {
             echo '
             <form method="post" action="" class="form-content">
                 <input class="form-control" type="submit" name="logoutButton" value="Logout">
-            </form>';
+            </form>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="vendors.php">Vendors</a></li>';
             }
             ?>
 
-            <li><a href="index.php">Home</a></li>
-            <li><a href="register.php">Register</a></li>
-            <li><a href="vendors.php">Vendors</a></li>
         </ul>
        </div>
 
