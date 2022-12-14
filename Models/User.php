@@ -54,4 +54,14 @@ class User {
         $stmt->bindParam(5, $owner);
         $stmt->execute();
     }
+
+    public function addVendor($name, $address, $creator, $logo){
+        $sqlQ = 'INSERT INTO vendors (name, shippingAddress, creator, logo) VALUES (?, ?, ?, ?)';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $address);
+        $stmt->bindParam(3, $creator);
+        $stmt->bindParam(4, $logo);
+        $stmt->execute();
+    }
 }

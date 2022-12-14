@@ -1,0 +1,39 @@
+<?php require('template/header.phtml');
+
+echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view->pageTitle . '</h1>';
+
+if (!isset($_SESSION["login"])) {
+    echo '<h3 class="text-center">Log in to view this page!</h3>';
+}
+else {
+    echo '
+    <div class="form">
+        <div class="form-content">
+            <div class="row">
+                <form method="post" action="/add-vendor.php" enctype="multipart/form-data">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" name="Name" maxlength="60" required/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Shipping Address" name="Address" maxlength="80" required/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="Images[]" accept="image/*"/>
+                        </div>
+                    </div>
+
+                    <button class="form-control" type="submit" name="AddVendor">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>';
+}
+require('template/footer.phtml');
