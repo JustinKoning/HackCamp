@@ -29,9 +29,7 @@ if (isset($_POST['AddProduct'])){
             }
         }
     }
-
-    $user->addProduct($_POST['Name'], $_POST['Type'], $_POST['Cost'], $imageStr, $_SESSION['UID']);
+    $user->addProduct($_POST['Name'], $_POST['Type'], $_POST['Cost'], $imageStr, $_GET['id']);
 }
-
 
 require_once('Views/add-product.phtml');

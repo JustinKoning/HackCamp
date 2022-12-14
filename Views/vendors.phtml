@@ -9,7 +9,7 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
             <tr>
               <th scope="col">Vendor Name</th>
               <th scope="col">Amount of Products</th>
-              <th scope="col"><a class="btn btn-primary btn-sm" href="/create-vendor.php" role="button">Create Vendor</a></th>
+              <th scope="col"><a class="btn btn-primary btn-sm" href="/add-vendor.php" role="button">Create Vendor</a></th>
             </tr>
           </thead>
         ';
@@ -18,7 +18,7 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
         echo'
         <tr>
             <td>'.$vendorData->getName().'</td>
-            <td><b>'.$view->productDataSet.'</b></td>
+            <td><b>'. $view->productDataSet->fetchAmount($vendorData->getID()) .'</b></td>
             <td><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View Vendor Dashboard</a></td>
         </tr>
     ';
