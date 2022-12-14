@@ -4,27 +4,29 @@ echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view-
 
 if (isset($_SESSION["login"])) { //Don't show register page if user is registered
     echo '
-    <div class="container" id="vendorcontainer">
-        <div class="row" id="topvendor">
-            <div class="col-md-2" id="vendorbar">Vendor</div>
-            <div class="col-md-2" id="vendorbar">Amount of Products</div>
-            <div class="col-md-2" id="vendorbar"><a class="btn btn-primary btn-sm" href="/create-vendor.php" role="button">Create New</a></div> 
-        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Vendor Name</th>
+              <th scope="col">Amount of Products</th>
+              <th scope="col"><a class="btn btn-primary btn-sm" href="/create-vendor.php" role="button">Create Vendor</a></th>
+            </tr>
+          </thead>
         ';
 
     foreach ($view->vendorDataSet as $vendorData) {
         echo'
-        <div class="row" id="vendorentry">
-            <div class="col-md-2">'.$vendorData->getName().'</div>
-            <div class="col-md-2"><b>5</b></div>
-            <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View</a></div> 
-        </div> 
+        <tr>
+            <td>'.$vendorData->getName().'</td>
+            <td><b>'.$view->productDataSet.'</b></td>
+            <td><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View Vendor Dashboard</a></td>
+        </tr>
     ';
     }
-    echo '</div>';
-
+    echo '</table>';
 }
 else {
-    echo 'Login to access your vendors!';
+    echo '<h3 class="text-center">Log in to view this page.</h3>';
 }
+
 require('template/footer.phtml');

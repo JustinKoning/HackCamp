@@ -43,4 +43,15 @@ class User {
         unset($_SESSION['UID']);
         session_destroy();
     }
+
+    public function addProduct($name, $type, $cost, $images, $owner){
+        $sqlQ = 'INSERT INTO products (name, type, cost, images, owner) VALUES (?, ?, ?, ?, ?)';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $type);
+        $stmt->bindParam(3, $cost);
+        $stmt->bindParam(4, $images);
+        $stmt->bindParam(5, $owner);
+        $stmt->execute();
+    }
 }

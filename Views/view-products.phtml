@@ -1,0 +1,30 @@
+<?php require('template/header.phtml');
+
+echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view->pageTitle . '</h1>';
+
+if (isset($_SESSION["login"])) {
+    echo '
+    <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Cost</th>
+              <th scope="col">Image</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>';
+    foreach ($view->productTable as $productData){ //For every entry in chargerTable, render a table row
+        echo '<tr>' .
+            '<td> #' . $productData->getPID() . '</td>' .
+            '<td>' . $productData->getName() . '</td>' .
+            '<td>' . $productData->getType() . '</td>' .
+            '<td> £' . $productData->getCost() . '</td>' .
+            '<td> <img class="img-circle" width="50" src="/images/' . $productData->getImages()[0] . '" alt="Product image"/></td>' .
+            '<td><a class="btn btn-default btn-md" href="preview-product.php" role="button">Preview</a></td></tr>';
+    }
+    echo '</table>';
+}
+
+require('template/footer.phtml');

@@ -1,13 +1,12 @@
 <?php
-
 require_once("Models/User.php");
-require_once('Models/Vendor.php');
+require_once ('Models/ProductDataSet.php');
 
 $user = new User();
-$vendor = new Vendor($_GET['id']);
 $view = new stdClass();
-$view->pageTitle = 'Dashboard';
-$view->vendor = $vendor;
+$view->pageTitle = 'My Products';
+$productDataSet = new ProductDataSet();
+$view->productTable = $productDataSet->fetchAll();
 
 if (isset($_POST["loginButton"])) { //Call logIn function when login button pressed using details user entered
     $user->logIn($_POST["email"], $_POST["password"]);
@@ -17,4 +16,6 @@ if (isset($_POST["logoutButton"])){ //Call logOut function when logout button pr
     $user->logOut();
 }
 
-require_once('Views/view-vendor.phtml');
+
+
+require_once('Views/view-products.phtml');
