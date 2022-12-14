@@ -79,3 +79,8 @@
     text-align: center;
     align-content: center;
 }
+
+#change-buttons{
+    text-align: center;
+    margin-top: 10px;
+}
