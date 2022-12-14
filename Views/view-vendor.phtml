@@ -8,8 +8,8 @@ if (isset($_SESSION["login"])) {
     echo '
     <div class="row" id="permission-buttons">
         <div class="col-md-2"><a class="btn btn-default btn-sm" href="/members.php?id=' . $_GET['id'] .'" role="button">Add/Remove Users</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/add-product.php" role="button">Add Product</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-products.php" role="button">View Products</a></div>
+        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/add-product.php?id='. $_GET['id'] .'" role="button">Add Product</a></div>
+        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-products.php?id=' . $_GET['id'] .'" role="button">View Products</a></div>
         <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">View Logs</a></div>
     </div>
     ';

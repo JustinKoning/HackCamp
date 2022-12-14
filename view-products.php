@@ -6,7 +6,7 @@ $user = new User();
 $view = new stdClass();
 $view->pageTitle = 'My Products';
 $productDataSet = new ProductDataSet();
-$view->productTable = $productDataSet->fetchAll();
+$view->productTable = $productDataSet->fetchAll($_GET['id']);
 
 if (isset($_POST["loginButton"])) { //Call logIn function when login button pressed using details user entered
     $user->logIn($_POST["email"], $_POST["password"]);

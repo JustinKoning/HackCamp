@@ -10,11 +10,10 @@ $view->pageTitle = 'Vendors';
 
 $vendorDataSet = new VendorDataSet();
 
-$productDataSet = new ProductDataSet();
+$view->productDataSet = new ProductDataSet();
 
 if (isset($_SESSION["login"])) {
     $view->vendorDataSet = $vendorDataSet->fetchAssociatedVendors($_SESSION["login"]);
-    $view->productDataSet = $productDataSet->fetchAmount();
 }
 
 if (isset($_POST["loginButton"])) { //Call logIn function when login button pressed using details user entered

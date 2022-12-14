@@ -10,10 +10,10 @@ class ProductDataSet{
         $this->_dbHandle = $this->_dbInstance->getdbConnection();
     }
 
-    public function fetchAll(){
+    public function fetchAll($id){
         $sqlQ = 'SELECT * FROM products WHERE owner = ?';
         $stmt = $this->_dbHandle->prepare($sqlQ);
-        $stmt->bindParam(1, $_SESSION['UID']);
+        $stmt->bindParam(1, $id);
         $stmt->execute();
         $dataSet = [];
         while ($row = $stmt->fetch()){
@@ -22,10 +22,10 @@ class ProductDataSet{
         return $dataSet;
     }
 
-    public function fetchAmount(){
+    public function fetchAmount($id){
         $sqlQ = 'SELECT COUNT(owner) FROM products WHERE owner = ?';
         $stmt = $this->_dbHandle->prepare($sqlQ);
-        $stmt->bindParam(1, $_SESSION['UID']);
+        $stmt->bindParam(1, $id);
         $stmt->execute();
         return $stmt->fetch()[0];
     }
