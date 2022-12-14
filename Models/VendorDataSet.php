@@ -22,7 +22,7 @@ class VendorDataSet
         INNER JOIN vendor_permissions vp
         on u.UID = vp.user_ID
         INNER JOIN vendors v
-        on v.creator = vp.user_ID
+        on v.vendor_ID = vp.vendor_ID
         WHERE u.email = "'.$login.'" AND vp.permission_ID = 1;';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
