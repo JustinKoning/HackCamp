@@ -12,10 +12,15 @@ if (isset($_SESSION["login"])) {
               <th scope="col">Type</th>
               <th scope="col">Cost</th>
               <th scope="col">Image</th>
-              <th scope="col"></th>
+              <th scope="col" class="col-md-3">
+                <form class="form-inline" method="post" action="/view-products.php?id=' . $_GET['id'] .'">
+                    <input class="form-control" type="search" placeholder="Search" name="searchBar">
+                    <button class="form-control" type="submit" name="searchBtn">Submit</button>
+                </form>
+              </th>
             </tr>
           </thead>';
-    foreach ($view->productTable as $productData){ //For every entry in chargerTable, render a table row
+    foreach ($view->productTable as $productData){ //For every entry in productTable, render a table row
         echo '<tr>' .
             '<td> #' . $productData->getPID() . '</td>' .
             '<td>' . $productData->getName() . '</td>' .

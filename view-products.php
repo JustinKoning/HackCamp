@@ -16,6 +16,10 @@ if (isset($_POST["logoutButton"])){ //Call logOut function when logout button pr
     $user->logOut();
 }
 
+if (isset($_POST['searchBtn'])){
+    $view->productTable = $productDataSet->searchAll($_POST['searchBar'], $_GET['id']);
+}
+
 
 
 require_once('Views/view-products.phtml');

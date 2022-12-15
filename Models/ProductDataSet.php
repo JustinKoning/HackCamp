@@ -29,4 +29,18 @@ class ProductDataSet{
         $stmt->execute();
         return $stmt->fetch()[0];
     }
+
+    public function searchAll($searchData, $id){ //Searches database
+        $searchData = '%' . $searchData . '%'; //SQL format
+        $sqlQ = 'SELECT * FROM products WHERE owner = ? AND CONCAT(name, type) LIKE ?';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $id);
+        $stmt->bindParam(2, $searchData);
+        $stmt->execute();
+        $dataSet = [];
+        while ($row = $stmt->fetch()){
+            $dataSet[] = new ProductData($row);
+        }
+        return $dataSet;
+    }
 }
