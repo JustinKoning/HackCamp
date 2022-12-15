@@ -21,8 +21,14 @@ if (isset($_SESSION["login"])) {
             </tr>
           </thead>';
     foreach ($view->productTable as $productData){ //For every entry in productTable, render a table row
-        echo '<tr><form method="post" action="/view-products.php?pid='. $productData->getPID() .'&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
-            '<td> #' . $productData->getPID() . '</td>' .
+        echo '<tr xmlns="http://www.w3.org/1999/html"><form method="post" action="/view-products.php?pid=' . $productData->getPID() .'&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
+            '<td>#' . $productData->getPID() .
+                    '<div>
+                        <label class="checkbox-inline" for="visibilityCheck">Visible
+                            <input type="checkbox" id="visibilityCheck" value="checked" name="visibilityCheck" ' . $productData->getVisibility() . '>
+                        </label>
+                    </div>
+            </td>' .
             '<td> <input class=" text-center form-control" type="text" value="' . $productData->getName() . '" name="Name"></td>' .
             '<td><select name="Type" class="form-control text-center">
                                         <option value="' . $productData->getType() . '">' . $productData->getType() . '</option>

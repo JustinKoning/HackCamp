@@ -1,7 +1,7 @@
 <?php
 class ProductData
 {
-    protected $_PID, $_name, $_type, $_cost, $_images, $_owner;
+    protected $_PID, $_name, $_type, $_cost, $_images, $_owner, $_visibility;
 
     public function __construct($row){ //Populate
         $this->_PID = $row['PID'];
@@ -10,6 +10,7 @@ class ProductData
         $this->_cost = $row['cost'];
         $this->_images = $row['images'];
         $this->_owner = $row['owner'];
+        $this->_visibility = $row['visibility'];
     }
 
     public function getPID(){
@@ -38,5 +39,9 @@ class ProductData
 
     public function getOwner(){
         return $this->_owner;
+    }
+
+    public function getVisibility(){
+        return $this->_visibility;
     }
 }

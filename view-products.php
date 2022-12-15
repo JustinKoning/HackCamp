@@ -40,7 +40,11 @@ if (isset($_POST['Edit'])) {
             }
         }
     }
-    $view->productDataSet = $productDataSet->editProduct($_GET['pid'], $_POST['Name'], $_POST['Type'], ltrim($_POST['Cost'], '£'), $imageStr);
+    $isVisible = '';
+    if (isset($_POST['visibilityCheck'])){
+        $isVisible = 'checked';
+    }
+    $view->productDataSet = $productDataSet->editProduct($_GET['pid'], $_POST['Name'], $_POST['Type'], ltrim($_POST['Cost'], '£'), $imageStr, $isVisible);
     $view->productTable = $productDataSet->fetchAll($_GET['id']); //Refresh table after upload
 }
 
