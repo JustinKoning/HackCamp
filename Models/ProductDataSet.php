@@ -43,4 +43,14 @@ class ProductDataSet{
         }
         return $dataSet;
     }
+
+    public function fetchValue($id){
+        $sqlQ = 'SELECT IFNULL(total, 0) FROM (
+	             SELECT ROUND(SUM(cost), 2) AS "total" FROM products where owner = ?
+                 ) results';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        return $stmt->fetch()[0];
+    }
 }
