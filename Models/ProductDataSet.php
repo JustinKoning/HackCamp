@@ -53,4 +53,17 @@ class ProductDataSet{
         $stmt->execute();
         return $stmt->fetch()[0];
     }
+
+    public function editProduct($PID, $name, $type, $cost, $images){
+        $sqlQ = 'UPDATE products
+                 SET name = ?, type = ?, cost = ?, images = ?
+                 WHERE PID = ?';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $type);
+        $stmt->bindParam(3, $cost);
+        $stmt->bindParam(4, $images);
+        $stmt->bindParam(5, $PID);
+        $stmt->execute();
+    }
 }

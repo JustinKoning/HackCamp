@@ -7,12 +7,12 @@ if (isset($_SESSION["login"])) {
     <table class="table">
           <thead>
             <tr>
-              <th scope="col">Product ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Type</th>
-              <th scope="col">Cost</th>
-              <th scope="col">Image</th>
-              <th scope="col" class="col-md-3">
+              <th scope="col" class="text-center">Product ID</th>
+              <th scope="col" class="text-center">Name</th>
+              <th scope="col" class="text-center">Type</th>
+              <th scope="col" class="text-center">Cost</th>
+              <th scope="col" class="text-center">Images</th>
+              <th scope="col" class="col-md-3 text-center">
                 <form class="form-inline" method="post" action="/view-products.php?id=' . $_GET['id'] .'">
                     <input class="form-control" type="search" placeholder="Search" name="searchBar">
                     <button class="form-control" type="submit" name="searchBtn">Submit</button>
@@ -21,13 +21,31 @@ if (isset($_SESSION["login"])) {
             </tr>
           </thead>';
     foreach ($view->productTable as $productData){ //For every entry in productTable, render a table row
-        echo '<tr>' .
+        echo '<tr><form method="post" action="/view-products.php?pid='. $productData->getPID() .'&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
             '<td> #' . $productData->getPID() . '</td>' .
-            '<td>' . $productData->getName() . '</td>' .
-            '<td>' . $productData->getType() . '</td>' .
-            '<td> £' . $productData->getCost() . '</td>' .
-            '<td> <img class="img-circle" width="50" src="/images/' . $productData->getImages()[0] . '" alt="Product image"/></td>' .
-            '<td><a class="btn btn-default btn-md" href="preview-product.php" role="button">Preview</a></td></tr>';
+            '<td> <input class=" text-center form-control" type="text" value="' . $productData->getName() . '" name="Name"></td>' .
+            '<td><select name="Type" class="form-control text-center">
+                                        <option value="' . $productData->getType() . '">' . $productData->getType() . '</option>
+                                        <option value="Accessories">Accessories</option>
+                                        <option value="Outerwear">Outerwear</option>
+                                        <option value="Shirts">Shirts</option>
+                                        <option value="Pants">Pants</option>
+                                        <option value="Shoes">Shoes</option>
+                                        <option value="Skirts">Skirts</option>
+                                    </select></td>' .
+            '<td><input class=" text-center form-control" type="text" value="£' . $productData->getCost() . '" name="Cost"></td>' .
+            '<td>';
+        for ($i = 0; $i < count($productData->getImageArr()); $i++){ //Display all product images
+            echo '<img class="img-circle" width="50" src="/images/' . $productData->getImageArr()[$i] . '" alt="Product image"/>';
+        }
+        echo '<div style="padding: 10px">
+                    <label for="image-upload-'. $productData->getPID() .'" class="btn btn-default btn-md">Upload</label>
+                    <input type="file" class="hidden" id="image-upload-'. $productData->getPID() .'" name="Images[]" accept="image/*" multiple/>
+                </div></td>' .
+            '<td>
+                <button class="btn btn-default btn-md" type="submit" name="Edit">Submit changes</button>
+                <a class="btn btn-default btn-md" href="preview-product.php" role="button">Preview</a>
+            </td></form></tr>';
     }
     echo '</table>';
 }

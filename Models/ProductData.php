@@ -28,7 +28,11 @@ class ProductData
         return $this->_cost;
     }
 
-    public function getImages(){
+    public function getImageStr(){
+        return $this->_images;
+    }
+
+    public function getImageArr(){
         return explode(',', $this->_images);
     }
 
