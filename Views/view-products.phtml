@@ -50,7 +50,7 @@ if (isset($_SESSION["login"])) {
                 </div></td>' .
             '<td>
                 <button class="btn btn-default btn-md" type="submit" name="Edit">Submit changes</button>
-                <a class="btn btn-default btn-md" href="preview-product.php" role="button">Preview</a>
+                <a class="btn btn-default btn-md" href="preview-product.php?pid=' . $productData->getPID() .'&id=' . $_GET['id'] . '" role="button">Preview</a>
             </td></form></tr>';
     }
     echo '</table>';

@@ -1,0 +1,86 @@
+<?php require('template/header.phtml');
+
+echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view->pageTitle . '</h1>';
+
+if (isset($_SESSION["login"])) {
+    echo '
+<div class="container-fluid">
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+        <section class="carousel" aria-label="Gallery">
+            <ol class="carousel__viewport">';
+
+    for ($i = 0; $i < count($view->product->getImageArr()); $i++) {
+        echo '
+                <li id="carousel__slide' . $i . '" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <img src="images/' . $view->product->getImageArr()[$i] . '" width="100%" height="100%">
+                    </div>
+                </li>';
+    }
+    echo '</ol>
+            <aside class="carousel__navigation">
+                <ol class="carousel__navigation-list">';
+
+    for ($i = 0; $i < count($view->product->getImageArr()); $i++) {
+        echo '
+                    <li class="carousel__navigation-item">
+                        <a href="#carousel__slide' . $i .'" class="carousel__navigation-button">Go to slide ' . $i .'</a>
+                    </li>';
+    }
+    echo '</ol></aside></section></div>';
+    echo '<div class="col-md-5">
+            <h2>'. $view->product->getName() .'</h2>
+            <h3>Your Price: £'. $view->product->getCost() .'</h3>
+            <div class="form-control form-inline" style="height: 20%; max-width: 80%">
+                <h5><b>Size</b></h5>
+                <label for="S" class="radio-inline">S
+                    <input type="radio" id="S" value="S" name="size">
+                </label>
+                <label for="M" class="radio-inline">M
+                    <input type="radio" id="M" value="M" name="size">
+                </label>
+                <label for="L" class="radio-inline">L
+                    <input type="radio" id="L" value="L" name="size">
+                </label>
+                <label for="XL" class="radio-inline">XL
+                    <input type="radio" id="XL" value="XL" name="size">
+                </label>
+                <label for="XXL" class="radio-inline">XXL
+                    <input type="radio" id="XXL" value="XXL" name="size">
+                </label>
+                
+                <h5><b>Quantity</b></h5>
+                <select class="form-control" style="max-width: 20%">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10+</option>
+                </select>
+                <button class="btn btn-info" type="submit" style="padding-left: 25%; padding-right: 25%; margin-left: 5%"><b>Add to Cart</b></button>
+            </div>
+            <img src="images/ad.jpg" alt="Self Advertisement">
+            <div class="form-control text-center" style="height: 20%; max-width: 80%">
+                <h5>Earn <b>£'. round($view->product->getCost()/33, 2) .'</b> FanCash on this item! During Checkout, Login or Register for an account to start earning.</h5>
+            </div>
+            <details>
+                <summary><b>Shipping</b></summary>
+                <p>This item will ship within 1 business day.</p>
+            </details>
+            <details>
+                <summary><b>Description</b></summary>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare semper massa, id ultricies mauris luctus in. Vestibulum feugiat rhoncus dictum. Pellentesque eu venenatis turpis. Proin aliquam nisi eu nulla commodo, et imperdiet arcu finibus. Cras eget condimentum dui. Vestibulum ac ex ac magna lacinia molestie. Aenean eu lectus ut lorem laoreet ornare eu ut lorem. Morbi vulputate urna ac felis luctus, sit amet faucibus erat lacinia.
+                </p>
+            </details>
+          </div>';
+    echo '</div></div>';
+}
+
+require('template/footer.phtml');
