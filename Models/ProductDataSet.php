@@ -67,4 +67,13 @@ class ProductDataSet{
         $stmt->bindParam(6, $PID);
         $stmt->execute();
     }
+
+    public function fetchSingleProduct($id, $pid){
+        $sqlQ = 'SELECT * FROM products WHERE owner = ? AND PID = ?';
+        $stmt = $this->_dbHandle->prepare($sqlQ);
+        $stmt->bindParam(1, $id);
+        $stmt->bindParam(2, $pid);
+        $stmt->execute();
+        return new ProductData($stmt->fetch());
+    }
 }
