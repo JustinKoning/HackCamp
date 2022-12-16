@@ -24,7 +24,8 @@ if (isset($_POST['Edit'])) {
     //Image handling
     $imageStr = '';
     if ($_FILES['Images']['error'][0] != 0) { //If user hasn't uploaded new images
-        $imageStr = $productDataSet->fetchAll($_GET['id'])[$_GET['pid']-1]->getImageStr(); //Fetch current images
+        //$imageStr = $productDataSet->fetchAll($_GET['id'])[$_GET['pid']-1]->getImageStr(); //Fetch current images
+        $imageStr = $productDataSet->fetchSingleProduct($_GET['id'], $_GET['pid'])->getImageStr(); //Fetch current images
     } else {
         $last = array_key_last($_FILES['Images']['error']);
         foreach ($_FILES['Images']['error'] as $key => $error) {
