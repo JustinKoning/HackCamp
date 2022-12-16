@@ -23,8 +23,6 @@ if (isset($_POST["logoutButton"])){ //Call logOut function when logout button pr
 if (isset($_POST['addMember'])){
     if ($permissions['users'] == 1){
         $success = $vendor->addMember($_POST["email"], $_GET['id']);
-
-        echo $success;
     }else{
         echo 'no adding permission';
     }

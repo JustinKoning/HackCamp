@@ -59,7 +59,16 @@ if (isset($_SESSION["login"])) {
         }
     }
 
-    echo '</div>';
+    echo '
+        <div class="row" id="change-buttons">
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+                <form class="form-inline" method="post" action="/members.php?id=' . $_GET['id'] .'">
+                  <button class="form-control btn-success btn-sm" type="submit" name="savePermissions">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>';
 
 }
 else {
