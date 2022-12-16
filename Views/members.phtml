@@ -6,14 +6,29 @@ echo '<div class="col-md-12"><h2 class="text-center">' . $view->pageTitle . '</h
 if (isset($_SESSION["login"])) { //Don't show register page if user is registered
     echo '
     <div class="container" id="membercontainer">
+
+        <form class="row" id="add-member">
+            <form method="post" action="members.php">
+                 <div class="form-content">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="User E-mail" name="email" maxlength="80" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-2" id="permission-name">
+                        <button type="submit" class="form-control btn btn-primary btn-sm" name="AddMember">Add User</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="row" id="topmember">
             <div class="col-md-2"></div>
             <div class="col-md-2" id="permission-name">Username</div>
             <div class="col-md-1" id="permission-name">Access Vendor</div>
             <div class="col-md-1" id="permission-name">Modify Products</div>
             <div class="col-md-1" id="permission-name">Add/Remove Users</div>
-            <div class="col-md-1" id="permission-name">Modify Rights</div>
-            <div class="col-md-2" id="permission-name"><a class="btn btn-primary btn-sm" href="/create-vendor.php" role="button">Create New</a></div> 
+            <div class="col-md-1" id="permission-name">Modify Rights</div> 
         </div>
         ';
 
@@ -40,7 +55,7 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
             </div>
             
             <div class="row flex justify-content-center" id="change-buttons">
-                <div class="col-md-5"></div>
+                <div class="col-md-4"></div>
                 <div class="col-md-2" id="permission-name"><a class="btn btn-primary btn-sm" href="" role="button">Save Changes</a></div> 
             </div>
     ';
@@ -50,8 +65,8 @@ if (isset($_SESSION["login"])) { //Don't show register page if user is registere
         <div class="row" id="memberentry">
             <div class="col-md-2">'.$vendorData->getName().'</div>
             <div class="col-md-2"><b>5</b></div>
-            <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View</a></div> 
-        </div> 
+            <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View</a></div>
+        </div>
     ';
 
     }*/

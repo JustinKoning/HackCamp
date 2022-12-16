@@ -81,8 +81,12 @@
 #permission-buttons{
     text-align: center;
     align-content: center;
+    margin-top: 20px;
 }
 
+#add-member{
+    margin-top: 20px;
+}
 #change-buttons{
     text-align: center;
     margin-top: 20px;

@@ -15,4 +15,8 @@ if (isset($_POST["logoutButton"])){ //Call logOut function when logout button pr
     $user->logOut();
 }
 
+if (isset($_POST['addMember'])){
+    echo $_POST["email"];
+}
+
 require_once('Views/members.phtml');
