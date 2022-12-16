@@ -1,75 +1,64 @@
 <?php require('template/header.phtml');
 
-
 echo '<div class="col-md-12"><h2 class="text-center">' . $view->pageTitle . '</h2></div>';
 
-if (isset($_SESSION["login"])) { //Don't show register page if user is registered
-    echo '
-    <div class="container" id="membercontainer">
-
-        <form class="row" id="add-member">
-            <form method="post" action="members.php">
-                 <div class="form-content">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="User E-mail" name="email" maxlength="80" required/>
-                        </div>
-                    </div>
-                    <div class="col-md-2" id="permission-name">
-                        <button type="submit" class="form-control btn btn-primary btn-sm" name="AddMember">Add User</button>
-                    </div>
-                </div>
+if (isset($_SESSION["login"])) {
+    echo'
+    <div class="row add-member">
+        <div class="col-md-6"></div>
+        <div class="col">
+            <form class="form-inline" method="post" action="/members.php?id=' . $_GET['id'] .'">
+              <input class="form-control" type="text" placeholder="E-mail" name="email">
+              <button class="form-control btn-primary btn-sm" type="submit" name="addMember">Add User</button>
             </form>
         </div>
+    </div>';
+
+    echo '
+    <div class="container" id="membercontainer">
         <div class="row" id="topmember">
-            <div class="col-md-2"></div>
-            <div class="col-md-2" id="permission-name">Username</div>
-            <div class="col-md-1" id="permission-name">Access Vendor</div>
-            <div class="col-md-1" id="permission-name">Modify Products</div>
-            <div class="col-md-1" id="permission-name">Add/Remove Users</div>
-            <div class="col-md-1" id="permission-name">Modify Rights</div> 
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-2 col-sm-2" id="permission-name">Username</div>
+            <div class="col-md-1 col-sm-1" id="permission-name">Modify Products</div>
+            <div class="col-md-1 col-sm-1" id="permission-name">Add/Remove Users</div>
+            <div class="col-md-1 col-sm-1" id="permission-name">Modify Rights</div>
+            <div class="col-md-1 col-sm-1" id="permission-name">View Logs</div>
         </div>
         ';
 
     //Preview Users
-    echo '
-            <div class="row" id="memberentry">
-                <div class="col-md-2"></div>
-                <div class="col-md-2" id="memberuser">Test Creator</div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
-                <div class="col-md-2" id="permission-name"><a class="btn btn-danger btn-sm" href="" role="button">Remove User</a></div>
-            </div>
-            
-            <div class="row" id="memberentry">
-                <div class="col-md-2"></div>
-                <div class="col-md-2" id="memberuser">Test User</div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked></div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
-                <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
-                <div class="col-md-2" id="permission-name"><a class="btn btn-danger btn-sm" href="" role="button">Remove User</a></div> 
-            </div>
-            
-            <div class="row flex justify-content-center" id="change-buttons">
-                <div class="col-md-4"></div>
-                <div class="col-md-2" id="permission-name"><a class="btn btn-primary btn-sm" href="" role="button">Save Changes</a></div> 
-            </div>
-    ';
-    /*
-    foreach ($view->vendorDataSet as $vendorData) {
+    $membersDataSet = $view->vendor->getMembers();
+    $owner = $view->vendor->getCreatorId();
+
+    foreach ($membersDataSet as $memberData) {
         echo'
         <div class="row" id="memberentry">
-            <div class="col-md-2">'.$vendorData->getName().'</div>
-            <div class="col-md-2"><b>5</b></div>
-            <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-vendor.php?id='.$vendorData->getID().'" role="button">View</a></div> 
-        </div> 
-    ';
+            <div class="col-md-2"></div>
+            <div class="col-md-2" id="memberuser">'. $memberData->getEmail() .'</div>';
 
-    }*/
+        if($memberData->getUID() == $owner) {
+            echo '
+            <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
+            <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
+            <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
+            <div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></div>
+        </div>';
+        }elseif ($memberData->getEmail() == $_SESSION["login"]){
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getProducts() == 1){echo 'checked';} echo' disabled></div>';
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getUsers() == 1){echo 'checked';} echo' disabled></div>';
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getRights() == 1){echo 'checked';} echo' disabled></div>';
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getLogs() == 1){echo 'checked';} echo' disabled></div>';
+        echo'</div>';
+        }else{
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getProducts() == 1){echo 'checked';} echo'></div>';
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getUsers() == 1){echo 'checked';} echo'></div>';
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getRights() == 1){echo 'checked';} echo'></div>';
+            echo '<div class="col-md-1" id="permission-name"><input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"'; if($memberData->getLogs() == 1){echo 'checked';} echo'></div>';
+            echo '<div class="col-md-2" id="permission-name"><a class="btn btn-danger btn-sm" href="" role="button">Remove User</a></div>';
+        echo'</div>';
+        }
+    }
+
     echo '</div>';
 
 }
