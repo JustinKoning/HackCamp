@@ -5,13 +5,27 @@ echo '<h1 class="text-center">Welcome to the Fanatics Vendor Portal - ' . $view-
 if (isset($_SESSION["login"])) {
     $permissions = $view->vendor->getUserPermissions($_SESSION["login"]);
 
-    echo '
-    <div class="row" id="permission-buttons">
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/members.php?id=' . $_GET['id'] .'" role="button">Add/Remove Users</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/add-product.php?id='. $_GET['id'] .'" role="button">Add Product</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-products.php?id=' . $_GET['id'] .'" role="button">View Products</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">View Logs</a></div>
-    </div>
-    ';
+    echo '<div class="row" id="permission-buttons"><div class="col-md-2"></div>';
+    if ($permissions['view'] == 1){
+        echo '<div class="col-md-2"><a class="btn btn-default btn-sm" href="/members.php?id=' . $_GET['id'] .'" role="button">Add/Remove Users</a></div>';
+    }else{
+        echo '<div class="col-md-2"><a class="btn btn-default btn-sm disabled" role="button">Add/Remove Users</a></div>';
+    }
+
+    if ($permissions['products'] == 1){
+        echo'<div class="col-md-2"><a class="btn btn-default btn-sm" href="/add-product.php?id='. $_GET['id'] .'" role="button">Add Product</a></div>
+        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-products.php?id=' . $_GET['id'] .'" role="button">View Products</a></div>';
+    }else{
+        echo'<div class="col-md-2"><a class="btn btn-default btn-sm disabled" role="button">Add Product</a></div>
+        <div class="col-md-2"><a class="btn btn-default btn-sm" role="button">View Products</a></div>';
+    }
+
+    if ($permissions['logs'] == 1){
+        echo'<div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-logs.php?id=' . $_GET['id'] .'" role="button">View Logs</a></div>';
+    }else{
+        echo'<div class="col-md-2"><a class="btn btn-default btn-sm disabled"  role="button">View Logs</a></div>';
+    }
+
+    echo'</div>';
 }
 require('template/footer.phtml');
