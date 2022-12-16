@@ -4,7 +4,7 @@ require_once("Models/User.php");
 
 $user = new User();
 $view = new stdClass();
-$view->pageTitle = 'Members';
+$view->pageTitle = 'Manage Members';
 
 
 if (isset($_POST["loginButton"])) { //Call logIn function when login button pressed using details user entered
