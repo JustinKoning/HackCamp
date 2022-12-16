@@ -45,14 +45,16 @@
             <li><a href="index.php">Home</a></li>
             <li><a href="register.php">Register</a></li>';
             }
-            else
-            {
+            else {
             echo '
             <form method="post" action="" class="form-content">
                 <input class="form-control" type="submit" name="logoutButton" value="Logout">
             </form>
             <li><a href="index.php">Home</a></li>
             <li><a href="vendors.php">Vendors</a></li>';
+            if ($view->pageTitle == 'My Products' || $view->pageTitle == 'Add Product' || $view->pageTitle == 'Members' || $view->pageTitle == 'Logs'){
+                echo '<li><a href="view-vendor.php?id=' . $_GET['id'] . '">Back to dashboard</a></li>';
+            }
             }
             ?>
 
