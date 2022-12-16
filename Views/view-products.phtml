@@ -42,7 +42,7 @@ if (isset($_SESSION["login"])) {
             '<td><input class=" text-center form-control" type="text" value="£' . $productData->getCost() . '" name="Cost"></td>' .
             '<td>';
         for ($i = 0; $i < count($productData->getImageArr()); $i++){ //Display all product images
-            echo '<img class="img-circle" width="50" src="/images/' . $productData->getImageArr()[$i] . '" alt="Product image"/>';
+            echo '<img class="img" width="50" src="/images/' . $productData->getImageArr()[$i] . '" alt="Product image"/>';
         }
         echo '<div style="padding: 10px">
                     <label for="image-upload-'. $productData->getPID() .'" class="btn btn-default btn-md">Upload</label>
