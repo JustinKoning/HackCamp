@@ -12,22 +12,25 @@ if (isset($_SESSION["login"])) {
               <th scope="col" class="text-center">Type</th>
               <th scope="col" class="text-center">Cost</th>
               <th scope="col" class="text-center">Images</th>
-              <th scope="col" class="col-md-3 text-center">
-                <form class="form-inline" method="post" action="/view-products.php?id=' . $_GET['id'] .'">
+              <th scope="col" class="col-md-4 text-center">
+                <form class="form-inline" method="post" action="/view-products.php?id=' . $_GET['id'] . '">
+                    <button class="form-control" type="submit" name="searchBtn">Reset</button>
                     <input class="form-control" type="search" placeholder="Search" name="searchBar">
                     <button class="form-control" type="submit" name="searchBtn">Submit</button>
                 </form>
               </th>
             </tr>
           </thead>';
-    foreach ($view->productTable as $productData){ //For every entry in productTable, render a table row
+    $numOfResults = count($view->productTable);
+    echo '<h4 class="pull-right" style="margin-right: 12%">' . $numOfResults . ' Products found</h4>';
+    foreach ($view->productTable as $productData) { //For every entry in productTable, render a table row
         echo '<tr xmlns="http://www.w3.org/1999/html"';
-        if (!$productData->getVisibility() == 'visible'){ //If product is hidden, display a border
+        if (!$productData->getVisibility() == 'visible') { //If product is hidden, display a border
             echo 'style="border: red dashed;"';
         }
-        echo '><form method="post" action="/view-products.php?pid=' . $productData->getPID() .'&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
+        echo '><form method="post" action="/view-products.php?pid=' . $productData->getPID() . '&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
             '<td>#' . $productData->getPID() .
-                    '<div>
+            '<div>
                         <label class="checkbox-inline" for="visibilityCheck">Visible
                             <input type="checkbox" id="visibilityCheck" value="checked" name="visibilityCheck" ' . $productData->getVisibility() . '>
                         </label>
@@ -45,16 +48,16 @@ if (isset($_SESSION["login"])) {
                                     </select></td>' .
             '<td><input class=" text-center form-control" type="text" value="£' . $productData->getCost() . '" name="Cost"></td>' .
             '<td>';
-        for ($i = 0; $i < count($productData->getImageArr()); $i++){ //Display all product images
+        for ($i = 0; $i < count($productData->getImageArr()); $i++) { //Display all product images
             echo '<img class="img" width="50" src="/images/' . $productData->getImageArr()[$i] . '" alt="Product image"/>';
         }
         echo '<div style="padding: 10px">
-                    <label for="image-upload-'. $productData->getPID() .'" class="btn btn-default btn-md">Upload</label>
-                    <input type="file" class="hidden" id="image-upload-'. $productData->getPID() .'" name="Images[]" accept="image/*" multiple/>
+                    <label for="image-upload-' . $productData->getPID() . '" class="btn btn-default btn-md">Upload</label>
+                    <input type="file" class="hidden" id="image-upload-' . $productData->getPID() . '" name="Images[]" accept="image/*" multiple/>
                 </div></td>' .
             '<td>
                 <button class="btn btn-default btn-md" type="submit" name="Edit">Submit changes</button>
-                <a class="btn btn-default btn-md" href="preview-product.php?pid=' . $productData->getPID() .'&id=' . $_GET['id'] . '" role="button">Preview</a>
+                <a class="btn btn-default btn-md" href="preview-product.php?pid=' . $productData->getPID() . '&id=' . $_GET['id'] . '" role="button">Preview</a>
             </td></form></tr>';
     }
     echo '</table>';
