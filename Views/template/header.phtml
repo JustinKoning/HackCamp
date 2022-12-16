@@ -52,8 +52,11 @@
             </form>
             <li><a href="index.php">Home</a></li>
             <li><a href="vendors.php">Vendors</a></li>';
-            if ($view->pageTitle == 'My Products' || $view->pageTitle == 'Add Product' || $view->pageTitle == 'Members' || $view->pageTitle == 'Logs'){
+            if ($view->pageTitle == 'My Products' || $view->pageTitle == 'Add Product' || $view->pageTitle == 'Manage Members' || $view->pageTitle == 'Logs'|| $view->pageTitle == 'Preview Products'){
                 echo '<li><a href="view-vendor.php?id=' . $_GET['id'] . '">Back to dashboard</a></li>';
+            }
+            if ($view->pageTitle == 'Preview Products'){
+                echo '<li><a href="view-products.php?id=' . $_GET['id'] . '">Back to products</a></li>';
             }
             }
             ?>
