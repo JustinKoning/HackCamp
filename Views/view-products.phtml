@@ -21,7 +21,11 @@ if (isset($_SESSION["login"])) {
             </tr>
           </thead>';
     foreach ($view->productTable as $productData){ //For every entry in productTable, render a table row
-        echo '<tr xmlns="http://www.w3.org/1999/html"><form method="post" action="/view-products.php?pid=' . $productData->getPID() .'&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
+        echo '<tr xmlns="http://www.w3.org/1999/html"';
+        if (!$productData->getVisibility() == 'visible'){ //If product is hidden, display a border
+            echo 'style="border: red dashed;"';
+        }
+        echo '><form method="post" action="/view-products.php?pid=' . $productData->getPID() .'&id=' . $_GET['id'] . '" enctype="multipart/form-data">' .
             '<td>#' . $productData->getPID() .
                     '<div>
                         <label class="checkbox-inline" for="visibilityCheck">Visible
