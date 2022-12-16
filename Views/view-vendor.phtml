@@ -6,12 +6,22 @@ if (isset($_SESSION["login"])) {
     $permissions = $view->vendor->getUserPermissions($_SESSION["login"]);
 
     echo '
-    <div class="row" id="permission-buttons">
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/members.php?id=' . $_GET['id'] .'" role="button">Add/Remove Users</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/add-product.php?id='. $_GET['id'] .'" role="button">Add Product</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="/view-products.php?id=' . $_GET['id'] .'" role="button">View Products</a></div>
-        <div class="col-md-2"><a class="btn btn-default btn-sm" href="" role="button">View Logs</a></div>
-    </div>
+    <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center"></th>
+              <th scope="col" class="text-center"></th>
+              <th scope="col" class="text-center"></th>
+              <th scope="col" class="text-center"></th>
+            </tr>
+          </thead>
+          <tr>
+          <td><a class="btn btn-default btn-sm" href="/members.php?id=' . $_GET['id'] .'" role="button">Add/Remove Users</a></td>
+          <td><a class="btn btn-default btn-sm" href="/add-product.php?id='. $_GET['id'] .'" role="button">Add Product</a></td>
+          <td><a class="btn btn-default btn-sm" href="/view-products.php?id=' . $_GET['id'] .'" role="button">View Products</a></td>
+          <td><a class="btn btn-default btn-sm" href="" role="button">View Logs</a></td>
+</tr>
+        </table>
     ';
 }
 require('template/footer.phtml');
