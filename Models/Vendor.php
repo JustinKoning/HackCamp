@@ -13,11 +13,11 @@ class Vendor
 
     public function getUserPermissions($username)
     {
-        $sqlQuery = 'SELECT vp.permission_ID 
+        $sqlQuery = 'SELECT view, products, users, rights, logs
         FROM vendor_permissions vp
         INNER JOIN users u
         on u.email = "'.$username.'"
-        WHERE vp.vendor_ID = "'.$this->id.'" AND u.UID= vp.user_ID;';
+        WHERE "'.$this->id.'" AND u.UID= vp.user_ID';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(); // execute the PDO statement
@@ -31,7 +31,7 @@ class Vendor
         */
         $permissions = [1 => false, 2=>false, 3=>false];
         while ($row = $statement->fetch()) {
-            $permissions[$row['permission_ID']] = true;
+            //$permissions[$row['permission_ID']] = true;
         }
         return $permissions;
     }
